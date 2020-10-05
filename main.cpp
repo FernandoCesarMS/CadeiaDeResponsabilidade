@@ -23,8 +23,11 @@ int main() {
   handler = new HandlerPrint(handler, stack);
   handler = new HandlerPush(handler, stack);
   Instruction *inst;
+
   while ((inst = readNextInstruction())) {
     handler->handle(inst);
+    if (inst->msg == "oi")
+        break;
     delete inst;
   }
   delete stack;
